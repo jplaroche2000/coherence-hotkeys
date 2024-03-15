@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<cache-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.oracle.com/coherence/coherence-cache-config"
+	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-cache-config coherence-cache-config.xsd">
+
+	<caching-scheme-mapping>
+		<cache-mapping>
+			<cache-name>PricePlan</cache-name>
+			<scheme-name>PricePlanScheme</scheme-name>
+		</cache-mapping>
+	</caching-scheme-mapping>
+
+	<caching-schemes>
+		<distributed-scheme>
+			<scheme-name>PricePlanScheme</scheme-name>
+			<service-name>PricePlanCacheService</service-name>
+			<backing-map-scheme>
+				<local-scheme>
+					<expiry-delay>30d</expiry-delay>
+				</local-scheme>
+			</backing-map-scheme>
+		</distributed-scheme>
+	</caching-schemes>
+
+	<invocation-scheme>
+		<scheme-name>invocation-service</scheme-name>
+		<service-name>InvocationService-TouchCount</service-name>
+	</invocation-scheme>
+
+</cache-config>
