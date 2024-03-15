@@ -3,7 +3,7 @@ package com.mycompany.coherence.hotkeys.invocable;
 import java.util.Objects;
 
 /**
- * Aggregator's holder for touch count and key (K type) of an entry.
+ * Invocable's holder for touch count and key (K type) of an entry.
  * 
  * @param K The type of the key, should implement Comparable
  */
