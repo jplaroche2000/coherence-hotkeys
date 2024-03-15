@@ -27,6 +27,10 @@ import com.tangosol.net.InvocationService;
 import com.tangosol.net.Member;
 import com.tangosol.net.NamedCache;
 
+/**
+ * This will trigger the invocation of the HotKeyInvocable.
+ * This application gas arguments, see command line arguments.
+ */
 public class HotKeys {
 
 	protected static final int DEFAULT_TOP_N = 100;
