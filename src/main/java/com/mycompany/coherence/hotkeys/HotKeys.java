@@ -33,14 +33,17 @@ import com.tangosol.net.NamedCache;
  */
 public class HotKeys {
 
-	protected static final int DEFAULT_TOP_N = 100;
+    protected static final int DEFAULT_TOP_N = 100;
     protected static final String DEFAULT_CACHE_SERVICE_NAME = "DistributedCache";
     protected static final String DEFAULT_INVOCATION_SERVICE_NAME = "InvocationService";
     protected static final boolean DEFAULT_VERBOSITY = false;
-	private static final String DEFAULT_CACHE_NAME = "default_cache";
+    protected static final String DEFAULT_CACHE_NAME = "default_cache";
 
     private static Options cliOptions;
-    
+    private static final int WARMUP_MAX = 1000000;
+    private static final int WARMUP_MIN = 0;
+    private static final int WARMUP_MAX_GETS = 1000;
+	
     private String cacheName;
     private String distributedCacheServicename;
     private String invocationServiceName;
@@ -94,26 +97,27 @@ public class HotKeys {
 		hotKeys.fetch();
 	}
 
+	/**
+	 * Warms up the cache with sample data.
+	 * 
+	 * @param cacheName
+	 */
 	private static void warmup(String cacheName) {
-		
-		int MAX = 1000000;
-		int MIN = 0;
-		int MAX_GETS = 1000;
 		
 		NamedCache cache = CacheFactory.getCache(cacheName); 
 		
 		cache.clear();
 
 		HashMap<Integer, String> newEntries = new HashMap<Integer, String>();
-		for (int i = 0; i < MAX; i++) {
+		for (int i = 0; i < WARMUP_MAX; i++) {
 			newEntries.put(new Integer(i), "Price plan #"+i);
 		}
 		cache.putAll(newEntries);
 
 		// Sample random gets
 		
-		for (int i = 0; i < MAX_GETS; i++) {
-			Integer key = new Integer(nextRandom(MIN, MAX));
+		for (int i = 0; i < WARMUP_MAX_GETS; i++) {
+			Integer key = new Integer(nextRandom(WARMUP_MIN, WARMUP_MAX));
 			cache.get(new Integer(key));
 		}
 		
