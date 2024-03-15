@@ -29,7 +29,7 @@ import com.tangosol.net.NamedCache;
 
 /**
  * This will trigger the invocation of the HotKeyInvocable.
- * This application gas arguments, see command line arguments.
+ * This application has arguments, see command line arguments.
  */
 public class HotKeys {
 
