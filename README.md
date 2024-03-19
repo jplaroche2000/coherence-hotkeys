@@ -1,4 +1,4 @@
-![cache](./img/image-1.png  =100x20)
+<img src="./img/image-1.png" width="200" height="200" />
 
 # coherence-hotkeys
 
