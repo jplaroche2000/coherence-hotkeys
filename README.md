@@ -1,5 +1,3 @@
-<img src="./img/image-1.png" width="400" height="400" align="center"/>
-
 # coherence-hotkeys
 
 Sample code to retrieve the n most accessed keys of a cache using the touch count attribute of a Coherence local cache backing map.
