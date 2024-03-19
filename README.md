@@ -1,4 +1,4 @@
-![cache](./images/img.png)
+![cache](./img/image-1.png)
 
 # coherence-hotkeys
 
