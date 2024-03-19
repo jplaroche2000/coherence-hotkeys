@@ -30,4 +30,4 @@ usage: com.telus.coherence.hotkeys.HotKeys
  -v         optional verbose mode; defaults to false
 ```
 Example:
-java com.telus.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5
+java -Dtangosol.coherence.cacheconfig=cache-config.xml com.telus.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v true
