@@ -1,4 +1,4 @@
-<img src="./img/image-1.png" width="200" height="200" />
+<center><img src="./img/image-1.png" width="400" height="400" /></center>
 
 # coherence-hotkeys
 
