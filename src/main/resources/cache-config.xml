@@ -17,15 +17,17 @@
 			<service-name>PricePlanCacheService</service-name>
 			<backing-map-scheme>
 				<local-scheme>
-					<expiry-delay>30d</expiry-delay>
+					<expiry-delay>10d</expiry-delay>
 				</local-scheme>
 			</backing-map-scheme>
 		</distributed-scheme>
+
+		<invocation-scheme>
+			<scheme-name>invocation-service</scheme-name>
+			<service-name>InvocationService-TouchCount</service-name>
+		</invocation-scheme>
+
 	</caching-schemes>
 
-	<invocation-scheme>
-		<scheme-name>invocation-service</scheme-name>
-		<service-name>InvocationService-TouchCount</service-name>
-	</invocation-scheme>
 
 </cache-config>
