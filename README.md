@@ -32,3 +32,4 @@ usage: com.telus.coherence.hotkeys.HotKeys
 Example:
 <p>
 ```java -Dtangosol.coherence.cacheconfig=cache-config.xml com.telus.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v true```
+
