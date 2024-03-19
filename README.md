@@ -33,3 +33,22 @@ Example:
 <br>
 ```java -Dtangosol.coherence.cacheconfig=cache-config.xml com.telus.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v true```
 
+Output:
+<br>
+```
+-c=PricePlan
+-d=PricePlanCacheService
+-i=InvocationService-TouchCount
+-n=5
+-v=null
+
+Oracle Coherence Version 12.2.1.4.20 Build 105485
+ Grid Edition: Development mode
+Copyright (c) 2000, 2023, Oracle and/or its affiliates. All rights reserved.
+
+Member(Id=1, Timestamp=2024-03-19 10:51:58.659, Address=192.168.2.165:57070, MachineId=9749, Location=process:15616, Role=MycompanyCoherenceHotkeysHotKeys)
+Execution on member Member(Id1, Address=192.168.2.165:57070, Role=MycompanyCoherenceHotkeysHotKeys) took 666 ms
+Total gathering of top 5 hot keys took 686 ms
+invocation completed
+SortedCollectionWithCapacity [sortedSet=[[key=50, touchCount=50], [key=25, touchCount=25], [key=10, touchCount=10], [key=998287, touchCount=1], [key=997442, touchCount=1]], maxCapacity=5]
+```
