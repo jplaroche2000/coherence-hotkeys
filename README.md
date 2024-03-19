@@ -29,3 +29,5 @@ usage: com.telus.coherence.hotkeys.HotKeys
  -n <arg>   optional number of maximum hot keys to fetch; defaults to 100
  -v         optional verbose mode; defaults to false
 ```
+Example:
+java com.telus.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5
