@@ -4,7 +4,7 @@ Sample code to retrieve the n most accessed keys of a cache using the touch coun
 
 ## Prerequisites
 
-- the cache's backing map must be configured to use a a local cache (local-scheme for the backing-map-scheme)
+- the cache's backing map must be configured to use a local cache (local-scheme for the backing-map-scheme)
 - you need an invocation service to run the provided invocable (com.tangosol.net.Invocable)
 - your cache keys must be serializable and implement Comparable
 
