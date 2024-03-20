@@ -31,7 +31,7 @@ usage: com.telus.coherence.hotkeys.HotKeys
 ```
 Example:
 <br>
-```java -Dcoherence.cacheconfig=cache-config.xml -Dcoherence.log.level=1 com.telus.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v```
+```java -Dcoherence.cacheconfig=cache-config.xml -Dcoherence.log.level=1 com.mycompany.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v```
 
 Output:
 <br>
