@@ -20,6 +20,7 @@
 					<expiry-delay>10d</expiry-delay>
 				</local-scheme>
 			</backing-map-scheme>
+			<autostart>true</autostart>
 		</distributed-scheme>
 
 		<invocation-scheme>
