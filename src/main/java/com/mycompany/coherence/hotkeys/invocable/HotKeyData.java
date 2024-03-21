@@ -10,73 +10,73 @@ import java.util.Objects;
  */
 public class HotKeyData<K extends Comparable<K>> implements Serializable, Comparable<HotKeyData<K>> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private K key;
-	private Integer touchCount = new Integer(0);
-	
-	/**
-	 * HotKeyData sole constructor.
-	 * 
-	 * @param key key of the entry
-	 * @param count touch count
-	 */
-	public HotKeyData(K key, int count) {
-		this.key = key;
-		this.touchCount = count;
-	}
-	
-	public K getKey() {
-		return key;
-	}
+    private K key;
+    private Integer touchCount = new Integer(0);
 
-	public void setKey(K key) {
-		this.key = key;
-	}
+    /**
+     * HotKeyData sole constructor.
+     * 
+     * @param key   key of the entry
+     * @param count touch count
+     */
+    public HotKeyData(K key, int count) {
+	this.key = key;
+	this.touchCount = count;
+    }
 
-	public int getTouchCount() {
-		return touchCount;
-	}
+    public K getKey() {
+	return key;
+    }
 
-	public void setTouchCount(int touchCount) {
-		this.touchCount = touchCount;
-	}
+    public void setKey(K key) {
+	this.key = key;
+    }
 
-	/**
-	 * 
-	 */
-	public int compareTo(HotKeyData<K> o) {
-		int result = this.touchCount.compareTo(o.touchCount);
-		if (result == 0) {
-			// return order based on the key
-			return this.key.compareTo(o.getKey());
-		} else {
-			return result;
-		}
-	}
-	
-	public int hashCode() {
-		return Objects.hash(key);
-	}
+    public int getTouchCount() {
+	return touchCount;
+    }
 
-	@SuppressWarnings("unchecked")
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		HotKeyData<K> other = (HotKeyData<K>) obj;
-		return Objects.equals(key, other.key);
-	}
+    public void setTouchCount(int touchCount) {
+	this.touchCount = touchCount;
+    }
 
-   /**
-    * Returns the key and the touch count value.
-	* 
-	* @return String
-	*/
-	public String toString() {
-		return "[key="+key+", touchCount="+touchCount+"]";
+    /**
+     * 
+     */
+    public int compareTo(HotKeyData<K> o) {
+	int result = this.touchCount.compareTo(o.touchCount);
+	if (result == 0) {
+	    // return order based on the key
+	    return this.key.compareTo(o.getKey());
+	} else {
+	    return result;
 	}
+    }
+
+    public int hashCode() {
+	return Objects.hash(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	HotKeyData<K> other = (HotKeyData<K>) obj;
+	return Objects.equals(key, other.key);
+    }
+
+    /**
+     * Returns the key and the touch count value.
+     * 
+     * @return String
+     */
+    public String toString() {
+	return "[key=" + key + ", touchCount=" + touchCount + "]";
+    }
 }
