@@ -28,11 +28,10 @@ usage: com.mycompany.coherence.hotkeys.HotKeysExample
  -i <arg>   optional name of InvocationService; defaults to
             InvocationService
  -n <arg>   optional number of maximum hot keys to fetch; defaults to 100
- -v         optional verbose mode; defaults to false
 ```
 Example:
 <br>
-```java -Dcoherence.cacheconfig=cache-config.xml -Dcoherence.log.level=1 com.mycompany.coherence.hotkeys.HotKeysExample -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v```
+```java -Dcoherence.cacheconfig=cache-config.xml -Dcoherence.log.level=1 com.mycompany.coherence.hotkeys.HotKeysExample -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 ```
 
 Output:
 <br>
@@ -41,7 +40,6 @@ Output:
 -d=PricePlanCacheService
 -i=InvocationService-TouchCount
 -n=5
--v=null
 
 Oracle Coherence Version 12.2.1.4.20 Build 105485
  Grid Edition: Development mode
