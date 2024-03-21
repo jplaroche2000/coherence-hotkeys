@@ -15,7 +15,6 @@ import com.tangosol.net.BackingMapContext;
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.DistributedCacheService;
 import com.tangosol.net.Member;
-import com.tangosol.net.cache.ConfigurableCacheMap;
 import com.tangosol.net.cache.LocalCache;
 import com.tangosol.util.Converter;
 

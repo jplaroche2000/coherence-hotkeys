@@ -1,13 +1,14 @@
 package com.mycompany.coherence.hotkeys.invocable;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Invocable's holder for touch count and key (K type) of an entry.
+ * Aggregator's holder for touch count and key (K type) of an entry.
  * 
  * @param K The type of the key, should implement Comparable
  */
-public class HotKeyData<K extends Comparable<K>> implements java.io.Serializable, Comparable<HotKeyData<K>> {
+public class HotKeyData<K extends Comparable<K>> implements Serializable, Comparable<HotKeyData<K>> {
 
 	private static final long serialVersionUID = 1L;
 
