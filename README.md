@@ -13,13 +13,13 @@ Sample code to retrieve the n most accessed keys of a cache using the touch coun
 - ```com.mycompany.coherence.hotkeys.invocable.HotKeyInvocable```: an invocable repsonsible for fetching the most accessed keys from each Coherence storage members' backing map
 - ```com.mycompany.coherence.hotkeys.invocable.HotKeyData```: holder of a collected hot key with its touch count value
 - ```com.mycompany.coherence.hotkeys.util.SortedCollectionWithCapacity```: a sorted set to store ordered top n collected HotKeyData
-- ```com.mycompany.coherence.hotkeys.HotKeys```: a sample application that invokes the HotKeyInvocable
+- ```com.mycompany.coherence.hotkeys.HotKeysExample```: a sample application that invokes the HotKeyInvocable
 - ```cache-config.xml```: a sample cache config
 
 ## Running the example
 
 ```
-usage: com.mycompany.coherence.hotkeys.HotKeys
+usage: com.mycompany.coherence.hotkeys.HotKeysExample
  -c <arg>   optional name of cache; defaults to default_cache
  -d <arg>   optional name of DistributedCache service; defaults to
             DistributedCache
@@ -31,7 +31,7 @@ usage: com.mycompany.coherence.hotkeys.HotKeys
 ```
 Example:
 <br>
-```java -Dcoherence.cacheconfig=cache-config.xml -Dcoherence.log.level=1 com.mycompany.coherence.hotkeys.HotKeys -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v```
+```java -Dcoherence.cacheconfig=cache-config.xml -Dcoherence.log.level=1 com.mycompany.coherence.hotkeys.HotKeysExample -c PricePlan -d PricePlanCacheService -i InvocationService-TouchCount -n 5 -v```
 
 Output:
 <br>
