@@ -15,6 +15,7 @@ import org.apache.commons.cli.ParseException;
 
 import com.mycompany.coherence.hotkeys.invocable.HotKeyData;
 import com.mycompany.coherence.hotkeys.invocable.HotKeyInvocable;
+import com.mycompany.coherence.hotkeys.invocable.HotKeyInvocationObserver;
 import com.mycompany.coherence.hotkeys.util.SortedCollectionWithCapacity;
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.DistributedCacheService;
@@ -46,7 +47,6 @@ public class HotKeys {
 	private String distributedCacheServicename;
 	private String invocationServiceName;
 	private int topN;
-	private boolean verbose;
 	private Map<Member, SortedCollectionWithCapacity<HotKeyData<Integer>>> invocationResults = new HashMap<Member, SortedCollectionWithCapacity<HotKeyData<Integer>>>();
 
 	static {
@@ -59,7 +59,6 @@ public class HotKeys {
 				String.format("optional name of DistributedCache service; defaults to %s", DEFAULT_CACHE_SERVICE_NAME));
 		cliOptions.addOption("i", true,
 				String.format("optional name of InvocationService; defaults to %s", DEFAULT_INVOCATION_SERVICE_NAME));
-		cliOptions.addOption("v", false, String.format("optional verbose mode; defaults to %s", DEFAULT_VERBOSITY));
 	}
 
 	public static void main(String[] args) {
@@ -82,15 +81,12 @@ public class HotKeys {
 		String cacheName = commandLine.getOptionValue("c", DEFAULT_CACHE_NAME);
 		String invocationServiceName = commandLine.getOptionValue("i", DEFAULT_INVOCATION_SERVICE_NAME);
 		int topN = Integer.parseInt(commandLine.getOptionValue("n", String.valueOf(DEFAULT_TOP_N)));
-		boolean verbose = commandLine.hasOption("v");
 
-		if (verbose) {
-			printOptions(commandLine);
-		}
+		printOptions(commandLine);
 
 		warmup(cacheName);
 
-		HotKeys hotKeys = new HotKeys(cacheName, cacheServiceName, invocationServiceName, topN, verbose);
+		HotKeys hotKeys = new HotKeys(cacheName, cacheServiceName, invocationServiceName, topN);
 		hotKeys.fetch();
 	}
 
@@ -140,16 +136,13 @@ public class HotKeys {
 		for (Option option : commandLine.getOptions()) {
 			System.out.printf("-%s=%s%n", option.getOpt(), commandLine.getOptionValue(option.getOpt()));
 		}
-
 	}
 
-	public HotKeys(String cacheName, String distributedCacheServicename, String invocationServiceName, int topN,
-			boolean verbose) {
+	public HotKeys(String cacheName, String distributedCacheServicename, String invocationServiceName, int topN) {
 		super();
 		this.cacheName = cacheName;
 		this.distributedCacheServicename = distributedCacheServicename;
 		this.invocationServiceName = invocationServiceName;
-		this.verbose = verbose;
 		this.topN = topN;
 	}
 
@@ -164,13 +157,12 @@ public class HotKeys {
 					"There must be storage members in the cluster for fetch top n keys to run.");
 		}
 
-		if (verbose)
-			showStorageMembers(getStorageMembers());
-
+		showStorageMembers(getStorageMembers());
+		
 		long startTime = System.currentTimeMillis();
 		Map<Member, Invocable> tasks = createTasks();
 		final CountDownLatch countDownLatch = new CountDownLatch(tasks.size());
-		InvocationObserver observer = newInvocationObserver(countDownLatch, startTime, isVerbose());
+		InvocationObserver observer = new HotKeyInvocationObserver<Integer>(countDownLatch, startTime, invocationResults);
 
 		for (Map.Entry<Member, Invocable> entry : tasks.entrySet()) {
 			Member member = entry.getKey();
@@ -185,10 +177,6 @@ public class HotKeys {
 			CacheFactory.log("Interrupted while awaiting invocation completion.");
 			CacheFactory.log(ex);
 		}
-	}
-
-	private boolean isVerbose() {
-		return this.verbose;
 	}
 
 	private InvocationService getInvocationService() {
@@ -264,39 +252,6 @@ public class HotKeys {
 		// TODO Auto-generated method stub
 		return "Member(Id=" + member.getId() + ", Address=" + member.getAddress().getHostAddress() + ":"
 				+ member.getPort() + ", Role=" + member.getRoleName() + ")";
-	}
-
-	/**
-	 * Create and return an InvocationObserver for observing the progress of
-	 * asynchronous Invocable execution.
-	 */
-	private InvocationObserver newInvocationObserver(final CountDownLatch countDownLatch, final long startTime,
-			final boolean isVerbose) {
-		return new InvocationObserver() {
-			public void memberCompleted(Member member, Object result) {
-				invocationResults.put(member, (SortedCollectionWithCapacity<HotKeyData<Integer>>) result);
-				countDownLatch.countDown();
-				CacheFactory.log(String.format("Task completed on %s.", member));
-			}
-
-			public void memberFailed(Member member, Throwable throwable) {
-				invocationResults.put(member, null);
-				countDownLatch.countDown();
-				CacheFactory.log(String.format("Task failed on %s.", member));
-				CacheFactory.log(throwable);
-			}
-
-			public void memberLeft(Member member) {
-				invocationResults.put(member, null);
-				countDownLatch.countDown();
-				CacheFactory.log(String.format("Member left before task completed: %s", member));
-			}
-
-			public void invocationCompleted() {
-				if (isVerbose)
-					System.out.println("invocation completed");
-			}
-		};
 	}
 
 }

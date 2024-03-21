@@ -26,7 +26,7 @@
 		<invocation-scheme>
 			<scheme-name>invocation-service</scheme-name>
 			<service-name>InvocationService-TouchCount</service-name>
-		<autostart>true</autostart>
+			<autostart>true</autostart>
 		</invocation-scheme>
 
 	</caching-schemes>
