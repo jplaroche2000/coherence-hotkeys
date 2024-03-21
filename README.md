@@ -19,7 +19,7 @@ Sample code to retrieve the n most accessed keys of a cache using the touch coun
 ## Running the example
 
 ```
-usage: com.telus.coherence.hotkeys.HotKeys
+usage: com.mycompany.coherence.hotkeys.HotKeys
  -c <arg>   optional name of cache; defaults to default_cache
  -d <arg>   optional name of DistributedCache service; defaults to
             DistributedCache
