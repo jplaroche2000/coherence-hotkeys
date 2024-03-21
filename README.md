@@ -10,8 +10,9 @@ Sample code to retrieve the n most accessed keys of a cache using the touch coun
 
 ## What is provided in this repository
 
-- ```com.mycompany.coherence.hotkeys.invocable.HotKeyInvocable```: an invocable repsonsible for fetching the most accessed keys from each Coherence storage members' backing map
+- ```com.mycompany.coherence.hotkeys.invocable.HotKeyInvocable```: an invocable responsible for fetching the most accessed keys from each Coherence storage members' backing map
 - ```com.mycompany.coherence.hotkeys.invocable.HotKeyData```: holder of a collected hot key with its touch count value
+- ```com.mycompany.coherence.hotkeys.invocable.HotKeyInvocationObserver```: invocation observer to collect results from each member
 - ```com.mycompany.coherence.hotkeys.util.SortedCollectionWithCapacity```: a sorted set to store ordered top n collected HotKeyData
 - ```com.mycompany.coherence.hotkeys.HotKeysExample```: a sample application that invokes the HotKeyInvocable
 - ```cache-config.xml```: a sample cache config
