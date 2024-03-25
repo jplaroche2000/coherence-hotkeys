@@ -115,7 +115,7 @@ public class HotKeysExample {
 
 	NamedCache cache = CacheFactory.getCache(cacheName);
 
-	cache.clear();
+	cache.truncate();
 
 	HashMap<Integer, String> newEntries = new HashMap<Integer, String>();
 	for (int i = 0; i < WARMUP_MAX; i++) {
